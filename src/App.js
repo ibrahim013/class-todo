@@ -1,25 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import Header from './component/Layout/Header';
+import AddTodo from './component/todoList/AddTodo';
+import ListTodo from './component/todoList/ListTodo';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const data = {
+  brandImg: '',
+  brandName: 'My Todo List',
+};
+
+const todoList = [
+  {
+    id: Math.random(),
+    name: 'wash',
+    isDone: false,
+  }
+];
+
+const App = () => (
+  <div>
+    <Header data={data} />
+    <ListTodo data={todoList} />
+    <AddTodo/>
+  </div>
+);
 
 export default App;
