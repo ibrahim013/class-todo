@@ -1,10 +1,36 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import { store } from '../../store';
 
-const ListTodo = ({ data }) => {
+
+const userTypes = {
+  USER_LOGIN_SUCCESS : 'USER_LOGIN_SUCCESS'
+}
+
+
+
+
+
+
+
+
+
+
+
+
+const ListTodo = () => {
+  const {state, dispatch} = useContext(store)
+
+  const handleDelete = (id) => {
+    dispatch({type: "Delete_Todo", data: id})
+  }
+
   return (
     <ul>
-      {data.map((list, index) => (
-        <li key={index}> {list.name}</li>
+      {state.map((list) => (
+        <div key={list.id}>
+        <li >{list.name}</li>
+        <button onClick={() => handleDelete(list.id)}>Delete</button>
+        </div>
       ))}
     </ul>
   );

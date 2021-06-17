@@ -1,20 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import {store} from '../../store'
+
 
 const AddTodo = () => {
   const [todo, setTodo] = useState({});
 
+  const {dispatch} = useContext(store)
+
   const handleTodo = (event) => {
-    const { name, value } = event.target;
+    const { value } = event.target;
 
     setTodo({
-      id: '',
+      id: Math.floor((Math.random()) * 300 * 100 - 100),
       name: value,
       isDone: false,
     });
   };
 
-  const handleAddTodo = (todoList) => {
-    todoList.push(todo);
+  const handleAddTodo = () => {
+   dispatch({type: "Add_Todo", data: todo})
   };
   
   return (
